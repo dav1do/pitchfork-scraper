@@ -92,6 +92,15 @@ class ReviewsSpider(scrapy.Spider):
         return item
 
     def stop_check(self, artist, album, date):
+        """
+        decide if we should stop searching. might be good to move if self.all_reviews above
+        so we can avoid a function call but leaving it here because it encapsulates logic even
+        though it's slower.
+        @param artist: artist name, will be compared to the splash_artist in the DB
+        @param album: album name, will be compared to splash_album in the DB
+        @param date: date in datetime, will be compared to review_date in the DB
+        @return: True if we should stop, False otherwise
+        """
         if self.all_reviews:
             return False
         if artist == self.recent_artist and album == self.recent_album and self.recent_date == date:
