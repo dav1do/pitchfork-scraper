@@ -32,9 +32,14 @@ class ReviewsSpider(scrapy.Spider):
         except IndexError:  # if there's no Next link, we're hopefully on the last page
             next_page = None
         for album in response.css('#main > ul > li > ul > li'):
-            splash_artist = album.xpath('.//div[@class="info"]/h1/text()').extract()[0]
-            splash_album = album.xpath('.//div[@class="info"]/h2/text()').extract()[0]
-            splash_date = album.xpath('.//div[@class="info"]/h4/text()').extract()[0]
+            try:
+                splash_artist = album.xpath('.//div[@class="info"]/h1/text()').extract()[0]
+                splash_album = album.xpath('.//div[@class="info"]/h2/text()').extract()[0]
+                splash_date = album.xpath('.//div[@class="info"]/h4/text()').extract()[0]
+            except IndexError:
+                # for some reason this fails occasionally but passes in the shell...
+                # just don't crash if it happens so we keep going
+                continue
             splash_date = self.make_datetime_from_date_string(splash_date, '%b %d, %Y')
             if self.stop_check(splash_artist, splash_album, splash_date):
                 logging.info('Stop check passed -- quitting')
