@@ -13,7 +13,7 @@ from the the project root, issue the following command:
     pip install -Ur requirements.txt
 
 ###Configure database
-This is setup to use sqlalchemy and postgresql. You should be able to run cat scrape.dump | psql to create the db locally. Will probably have to create the pitchfork user (see config file for password/user info).
+This is setup to use sqlalchemy and postgresql. You should be able to run cat scrape.dump | psql to create the db locally (I had to use sudo -u postgres bash and then cat scrape.dump | psql on my centOS VM). Will also have to create the pitchfork user (see config file for password/user info).
 
 It could be returned to a csv by modifying settings to remove DATABASE and ITEM_PIPELINES. It'd be prudent
 to remove the lines in pitchfork.spiders.reviews that connect and find the most recent review for the stop_check.
