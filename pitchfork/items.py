@@ -30,3 +30,12 @@ class PitchforkListItem(Item):
     rank = Field()
     year = Field()
     label = Field()
+
+
+class MetacriticItem(Item):
+    artist = Field()
+    album = Field()
+    critic_score = Field()
+    user_score = Field()
+    year = Field()
+    review_date = Field()

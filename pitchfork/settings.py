@@ -20,7 +20,7 @@ DATABASE = {
     'port': '5432',
     'username': 'pitchfork',
     'password': 'pitchfork',
-    'database': 'pitchfork'
+    'database': 'scrape'
 }
 
 # FEED_EXPORT_FIELDS = ['artist', 'album', 'score', 'year',
@@ -75,6 +75,7 @@ COOKIES_ENABLED = False
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'pitchfork.pipelines.PitchforkReviewsPipeline': 300,
+    'pitchfork.pipelines.MetacriticReviewsPipeline': 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

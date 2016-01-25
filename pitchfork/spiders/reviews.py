@@ -8,9 +8,12 @@ import logging
 
 
 class ReviewsSpider(scrapy.Spider):
-    name = "reviews"
+    name = "pitchfork"
     allowed_domains = ["pitchfork.com"]
     start_urls = ['http://pitchfork.com/reviews/albums/']
+    custom_settings = {
+        'PITCHFORKREVIEWSPIPELINE_ENABLED': True
+    }
 
     def __init__(self, all_reviews=False, *args, **kwargs):
         scrapy.Spider.__init__(self, *args, **kwargs)

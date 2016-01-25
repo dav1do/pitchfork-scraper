@@ -16,12 +16,12 @@ def db_connect():
 Base = declarative_base()
 
 
-def create_reviews_table(engine):
+def create_tables(engine):
     Base.metadata.create_all(engine)
 
 
 class Reviews(Base):
-    """sqlalchemy reviews model"""
+    """sqlalchemy pitchfork.com reviews model"""
     __tablename__ = "reviews"
 
     id = Column(Integer, primary_key=True)
@@ -54,3 +54,20 @@ class Reviews(Base):
                     self.splash_artist, self.splash_album, self.review_url)
 
 
+class MetacriticReviews(Base):
+    """sqlalchemy metacritic.com music reviews model"""
+    __tablename__ = "metacritic"
+
+    id = Column(Integer, primary_key=True)
+    album = Column('album', String)
+    artist = Column('artist', String)
+    review_date = Column('review_date', DateTime, nullable=True)
+    year = Column('year', Integer, nullable=True)
+    critic_score = Column('critic_score', Float)
+    user_score = Column('user_score', Float, nullable=True)
+
+    # enforce unique row with 'artist+album+review_date' unique constraint
+    # this seems cleaner/simpler than a composite primary key
+    __table_args__ = (
+        UniqueConstraint('artist', 'album', 'review_date', name='_mc_artist_album_review_date_uc'),
+    )
