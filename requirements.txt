@@ -12,7 +12,7 @@ idna==2.8
 incremental==17.5.0
 ipaddress==1.0.23
 lockfile==0.12.2
-lxml==4.5.0
+lxml==4.6.5
 parsel==1.5.2
 pid==2.2.5
 Protego==0.1.16
