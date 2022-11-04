@@ -31,6 +31,6 @@ service-identity==18.1.0
 setproctitle==1.1.10
 six==1.14.0
 SQLAlchemy==1.3.13
-Twisted==19.10.0
+Twisted==22.10.0
 w3lib==1.21.0
 zope.interface==4.7.1
